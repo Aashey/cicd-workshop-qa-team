@@ -38,3 +38,6 @@ cypress/screenshots/
 
 # Docker
 *.tar.gz
+
+.github/workflows/frontend-deployment.yml
+.github/workflows/frontend-tests.yml
