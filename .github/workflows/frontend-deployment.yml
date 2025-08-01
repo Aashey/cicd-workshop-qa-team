@@ -44,7 +44,7 @@ jobs:
 
   cypress_e2e:
     needs: deploy
-    runs-on: codebuild-team1-aashish-GitHub-Actions-Runner-${{ github.run_id }}-${{ github.run_attempt }}
+    runs-on: ubuntu-latest
 
     env:
       CYPRESS_BASE_URL: ${{ secrets.FRONTEND_DEPLOY_URL }}
