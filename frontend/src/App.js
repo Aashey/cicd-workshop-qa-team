@@ -11,6 +11,7 @@ function App() {
 
   useEffect(() => {
     console.log("🚀 App: Initializing user management application");
+    console.log("TEST");
     loadUsers();
   }, []);
 
