@@ -41,3 +41,28 @@ jobs:
 
       - name: Invalidate CloudFront cache
         run: aws cloudfront create-invalidation --distribution-id E3HRJ1SDFFELJY --paths "/*"
+
+  cypress_e2e:
+    needs: deploy
+    runs-on: ubuntu-latest
+
+    env:
+      CYPRESS_BASE_URL: ${{ secrets.FRONTEND_DEPLOY_URL }}
+      CYPRESS_API_URL: ${{ secrets.BACKEND_API_URL }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: ./e2e-tests
+        run: npm install
+
+      - name: Run Cypress E2E tests
+        working-directory: ./e2e-tests
+        run: npx cypress run
